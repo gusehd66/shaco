@@ -1,4 +1,3 @@
-
 /*----------------------------------------------------------------------*/
 function transformNext(event) {
     const slideNext = event.target;
@@ -10,7 +9,11 @@ function transformNext(event) {
 
     // 하나의 카드라도 왼쪽으로 이동했다면, 오른쪽으로 갈 수 있음
     if (Number(activeLi) < 0) {
-        activeLi = Number(activeLi) + 720;
+        if (document.body.offsetWidth < 500) {
+            activeLi = Number(activeLi) + 280;
+        } else {
+            activeLi = Number(activeLi) + 720;
+        }
 
         // 왼쪽에 있던 카드가 오른쪽으로 갔다면, 다시 왼쪽으로 갈 수 있으므로 PREV 버튼 활성화
         slidePrev.style.color = '#cfd8dc';
@@ -27,7 +30,7 @@ function transformNext(event) {
 
     classList.style.transition = 'transform 1s';
     classList.style.transform = 'translateX(' + String(activeLi) + 'px)';
-    classList.setAttribute('data-position', activeLi);    
+    classList.setAttribute('data-position', activeLi);
 }
 
 function transformPrev(event) {
@@ -41,39 +44,42 @@ function transformPrev(event) {
     let activeLi = classList.getAttribute('data-position');
     const liList = classList.getElementsByTagName('li');
 
-  /* classList.clientWidth 는 ul 태그의 실질적인 너비
-   * liList.length * 260 에서 260 은 각 li 요소의 실질 너비(margin 포함)
-   * activeLi 는 data-position 에 있는 현재 위치 
-   * 즉, liList.length * 260 + Number(activeLi) 는 현재 위치부터 오른쪽으로 나열되야 하는 나머지 카드들의 너비
-   */
+    /* classList.clientWidth 는 ul 태그의 실질적인 너비
+     * liList.length * 260 에서 260 은 각 li 요소의 실질 너비(margin 포함)
+     * activeLi 는 data-position 에 있는 현재 위치 
+     * 즉, liList.length * 260 + Number(activeLi) 는 현재 위치부터 오른쪽으로 나열되야 하는 나머지 카드들의 너비
+     */
 
-  /* classList.clientWidth < (liList.length * 260 + Number(activeLi)) 의미는
-   * 오른쪽으로 나열될 카드들이 넘친 상태이므로, 왼쪽으로 이동이 가능함
-   */
-  
-   if (classList.clientWidth < (liList.length * 720 + Number(activeLi))) {
-       // 위치를 왼쪽으로 260 이동 (-260px)
-       activeLi = Number(activeLi) - 720;
+    /* classList.clientWidth < (liList.length * 260 + Number(activeLi)) 의미는
+     * 오른쪽으로 나열될 카드들이 넘친 상태이므로, 왼쪽으로 이동이 가능함
+     */
 
-       /* 위치를 왼쪽으로 260 이동 (-260px)
-       * 해당 위치는 변경된 activeLi 값이 적용된 liList.length * 260 + Number(activeLi) 값임
-       * 이 값보다, classList.clientWidth (ul 태그의 너비)가 크다는 것은
-       * 넘치는 li 가 없다는 뜻으로, NEXT 버튼은 활성화되면 안됨
-       */
-      if (classList.clientWidth > (liList.length * 720 + Number(activeLi))) {
-        slidePrev.style.color = '#2f3059';
-        slidePrev.classList.remove('slide-prev-hover');
-        slidePrev.removeEventListener('click', transformPrev);
-      } 
+    if (classList.clientWidth < (liList.length * 720 + Number(activeLi))) {
+        // 위치를 왼쪽으로 720 이동 (-720px)
+        if (document.body.offsetWidth < 500) {
+            activeLi = Number(activeLi) - 280;
+        } else {
+            activeLi = Number(activeLi) - 720;
+        }
+        /* 위치를 왼쪽으로 260 이동 (-720px)
+         * 해당 위치는 변경된 activeLi 값이 적용된 liList.length * 260 + Number(activeLi) 값임
+         * 이 값보다, classList.clientWidth (ul 태그의 너비)가 크다는 것은
+         * 넘치는 li 가 없다는 뜻으로, NEXT 버튼은 활성화되면 안됨
+         */
+        if (classList.clientWidth > (liList.length * 720 + Number(activeLi))) {
+            slidePrev.style.color = '#2f3059';
+            slidePrev.classList.remove('slide-prev-hover');
+            slidePrev.removeEventListener('click', transformPrev);
+        }
 
-       slideNext.style.color = '#cfd8dc';
-       slideNext.classList.add('slide-next-hover');
-       slideNext.addEventListener('click', transformNext);
-   }
+        slideNext.style.color = '#cfd8dc';
+        slideNext.classList.add('slide-next-hover');
+        slideNext.addEventListener('click', transformNext);
+    }
 
-   classList.style.transition = 'transform 1s';
-   classList.style.transform = 'translateX(' + String(activeLi) + 'px)';
-   classList.setAttribute('data-position', activeLi);
+    classList.style.transition = 'transform 1s';
+    classList.style.transform = 'translateX(' + String(activeLi) + 'px)';
+    classList.setAttribute('data-position', activeLi);
 }
 
 const slidePrevList = document.getElementsByClassName('slide-prev');
@@ -93,9 +99,8 @@ for (let i = 0; i < slidePrevList.length; i++) {
            따라서, 1. 먼저 부모 요소를 찾아서,
                  2. 부모 요소의 자식 요소로 있는 PREV 와 NEXT 요소를 삭제함
         */
-       const arrowContainer = slidePrevList[i].parentElement;
-       arrowContainer.removeChild(slidePrevList[i].nextElementSibling);
-       arrowContainer.removeChild(slidePrevList[i]);
+        const arrowContainer = slidePrevList[i].parentElement;
+        arrowContainer.removeChild(slidePrevList[i].nextElementSibling);
+        arrowContainer.removeChild(slidePrevList[i]);
     }
 }
-

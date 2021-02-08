@@ -40,7 +40,7 @@ a:hover {
     /* align-items 등으로 수직 가운데 정렬을 위해, 알맞은 height 설정이 필요함 */
     margin: 0 auto;
     /* 가운데 정렬: 동일 요소에 width 가 설정되어 있을 때에만 적용 */
-    padding: 0rem 2rem;
+    padding: 0rem 10rem;
     /* 좌우 padding 을 살짝 주어서, 좌우에 딱 붙지 않도록 함 */
     overflow: hidden;
     /* 넘치는 영역에 대해서는 표시안되도록 작성해야 함 */
@@ -68,7 +68,7 @@ header {
 
 .main-image {
     width: 100%;
-    height: 300px;
+    height: 400px;
     background-image: url("../img/shaco.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -87,15 +87,17 @@ section {
     text-align: center;
     font-weight: bold;
     color: brown;
-    font-size: 1.4rem;
+    font-size: 3rem;
 }
 
 .main-message {
     position: absolute;
+    padding: 2rem 0rem;
     margin: 10rem 3rem;
     color: floralwhite;
     text-align: left;
-    line-height: 1.4rem;
+    line-height: 1.7rem;
+    font-size: 1.3rem;
 }
 
 .shaco-main {
@@ -107,7 +109,13 @@ section {
 .shaco-info {
     width: 100%;
     height: 100%;
-    margin: 3rem;
+    margin: 3rem 2rem;
+    text-align: center;
+}
+
+.shaco-info > img {
+    width: 150px;
+    height: 150px;
     text-align: center;
 }
 
@@ -131,9 +139,10 @@ section {
 .shaco-story {
     border: 4px solid purple;
     width: 100%;
-    height: 100%;
+    height: 300px;
     text-align: center;
     border-radius: 15px;
+    overflow: auto;
 }
 
 .story-title {
@@ -146,6 +155,7 @@ section {
     font-size: 1.4rem;
     margin: 1rem;
     color: #aaa;
+    line-height: 2rem;
 }
 
 .shaco-skill {
@@ -218,80 +228,141 @@ section {
 }
 
 .class-list {
-  display: flex;
-  list-style: none;
-  padding: 1rem 0;
-  margin: 0;
-  overflow: none; /* overflow 를 hidden 으로 설정하면, transform 시 이미지 짤림 */
+    display: flex;
+    list-style: none;
+    padding: 1rem 0rem 1rem 17rem;
+    margin: 0;
+    overflow: none;
+    /* overflow 를 hidden 으로 설정하면, transform 시 이미지 짤림 */
 }
 
 .class-card {
-  width: 700px;
-  /* box-shadow: 블럭에 그림자를 적용하는 CSS 기능
+    width: 700px;
+    /* box-shadow: 블럭에 그림자를 적용하는 CSS 기능
      https://developer.mozilla.org/ko/docs/Web/CSS/box-shadow 
      offset-x | offset-y | blur-radius | spread-radius | color */
-  box-shadow: 10px 10px 10px -5px rgba(25, 42, 70, 0.2);
-  border-radius: 8px;
-  margin: 0 10px;
-  transition: 0.4s;
-  /* IE11 에서는 flex 설정시, 디폴트로 flex 아이템들에 고정 너비를 무시 */
-  flex-shrink: 0;
+    box-shadow: 10px 10px 10px -5px rgba(25, 42, 70, 0.2);
+    border-radius: 8px;
+    margin: 0 10px;
+    transition: 0.4s;
+    /* IE11 에서는 flex 설정시, 디폴트로 flex 아이템들에 고정 너비를 무시 */
+    flex-shrink: 0;
 }
 
 .class-card:hover {
-  box-shadow: 10px 10px 10px 0px rgba(25, 42, 70, 0.2);
-  transform: translate(0, -5px);
-}
-
-.class-image {
-  /* 사이즈가 큰 이미지를 작은 블럭 내에 넣을 때 호환성을 위해 max-width/max-height 를 사용해야 함 */
-  max-width: 700px;
-  max-height: 500px;
-
-  /* border-radius: 블럭 모서리를 둥글게 하는 CSS 기능
-     top-left | top-right | bottom-right | bottom-left */
-  border-radius: 8px 8px 0 0;
+    box-shadow: 10px 10px 10px 0px rgba(25, 42, 70, 0.2);
+    transform: translate(0, -5px);
 }
 
 .style-image {
+    /* 사이즈가 큰 이미지를 작은 블럭 내에 넣을 때 호환성을 위해 max-width/max-height 를 사용해야 함 */
     max-width: 700px;
     max-height: 500px;
+
+    /* border-radius: 블럭 모서리를 둥글게 하는 CSS 기능
+     top-left | top-right | bottom-right | bottom-left */
     border-radius: 8px 8px 0 0;
 }
 
 .class-container {
-  width: 100%;
-  padding: 0.5rem 1rem 1rem 1rem;
+    width: 100%;
+    padding: 0.5rem 1rem 1rem 1rem;
 }
 
 .class-desc {
-  width: 100%;
-  margin-top: 1rem;
-  color: #545e6f;
+    width: 100%;
+    margin-top: 1rem;
+    color: #545e6f;
 }
 
 .class-desc:hover {
-  color: #2186c4;
+    color: #2186c4;
 }
 
 .class-title {
-  font-weight: bold;
-  color: inherit;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: inherit;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.5rem;
 }
 
 .class-detail {
-  font-size: 0.8rem;
-  color: inherit;
-  line-height: 1.8rem;
-  font-weight: bold;
+    font-size: 0.8rem;
+    color: inherit;
+    line-height: 1.8rem;
+    font-weight: bold;
 }
 
 li a:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
+
+@media only screen and (max-width: 480px) {
+    .main-image {
+        background-image: url("../img/shaco.jpg");
+        background-repeat: no-repeat;
+        background-size: 400px 300px;
+        opacity: 1;
+    }
+
+    .main-title {
+        position: absolute;
+        margin: 6rem 3rem;
+        text-align: center;
+        font-weight: bold;
+        color: brown;
+        font-size: 1.5rem;
+    }
+
+    .main-message {
+        position: absolute;
+        padding: 0rem;
+        margin: 9rem 3rem;
+        color: floralwhite;
+        text-align: left;
+        line-height: 1.4rem;
+        font-size: 0.9rem;
+    }
+
+    .shaco-info > img {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+    }
+
+    .story-main {
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+        margin: 1rem;
+        color: #aaa;
+    }
+
+    .skill > img {
+        border: 1px solid #FFC300;
+        border-radius: 36px;
+        margin: 0rem 0.6rem;
+        width: 50px;
+        height: 76%;
+    }
+    
+    
+    .class-card {
+        width: 250px;
+        margin: 0 1.8rem 0rem 0rem;
+        
+    }
+    .class-card >img {
+    width: 100%;
+    }
+    
+    .class-list {
+    padding: 1rem 0rem;
+}
+    .inner {
+        padding: 0rem 2rem;
+    }
+}
