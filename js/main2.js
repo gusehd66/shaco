@@ -53,8 +53,8 @@ function transformPrev(event) {
     /* classList.clientWidth < (liList.length * 260 + Number(activeLi)) 의미는
      * 오른쪽으로 나열될 카드들이 넘친 상태이므로, 왼쪽으로 이동이 가능함
      */
-
-    if (classList.clientWidth < (liList.length * 720 + Number(activeLi))) {
+    let classCard = document.getElementsByClassName("style-image")[0].offsetWidth;
+    if (classList.clientWidth < ((liList.length * (Number(classCard)+20)) + Number(activeLi))) {
         // 위치를 왼쪽으로 720 이동 (-720px)
         if (document.body.offsetWidth < 500) {
             activeLi = Number(activeLi) - 280;
@@ -66,7 +66,7 @@ function transformPrev(event) {
          * 이 값보다, classList.clientWidth (ul 태그의 너비)가 크다는 것은
          * 넘치는 li 가 없다는 뜻으로, NEXT 버튼은 활성화되면 안됨
          */
-        if (classList.clientWidth > (liList.length * 720 + Number(activeLi))) {
+        if (classList.clientWidth > ((liList.length * (Number(classCard)+20)) + Number(activeLi))) {
             slidePrev.style.color = '#2f3059';
             slidePrev.classList.remove('slide-prev-hover');
             slidePrev.removeEventListener('click', transformPrev);
