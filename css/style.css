@@ -66,10 +66,29 @@ header {
     font-size: 1.4rem;
 }
 
+.nav {
+    margin-top: 4rem;
+    font-size: 1.8rem;
+    padding: 0.4rem;
+}
+
+.nav > a{
+    color:darkslateblue;
+}
+
 .main-image {
     width: 100%;
     height: 400px;
     background-image: url("../img/shaco.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+}
+
+.main-image2 {
+    width: 100%;
+    height: 400px;
+    background-image: url("../img/zilean.JPG");
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 1;
@@ -272,7 +291,7 @@ section {
 .class-desc {
     width: 100%;
     margin-top: 1rem;
-    color: #545e6f;
+    color: #aaa;
 }
 
 .class-desc:hover {
@@ -300,10 +319,19 @@ li a:hover {
     cursor: pointer;
 }
 
+.footer-main {
+    padding: 1.2rem;
+    margin:  1.4rem;
+    text-align: center;
+    color:#aaa;
+}
+
+.footer-main > div {
+    padding: 0.2rem;
+}
 
 @media only screen and (max-width: 480px) {
-    .main-image {
-        background-image: url("../img/shaco.jpg");
+    .main-image, .main-image2 {
         background-repeat: no-repeat;
         background-size: 400px 300px;
         opacity: 1;
@@ -361,8 +389,13 @@ li a:hover {
     
     .class-list {
     padding: 1rem 0rem;
-}
+    }
+    
     .inner {
         padding: 0rem 2rem;
+    }
+    
+    .footer-main {
+        font-size: 0.8rem;
     }
 }
